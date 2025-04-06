@@ -1,0 +1,317 @@
+---
+title: "maxbootR-intro"
+author: "Torben Staud"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{maxbootR-intro}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r setup, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.width = 6,
+  fig.height = 4
+)
+library(maxbootR)
+library(ggplot2)
+library(tidyr)
+library(dplyr)
+library(lubridate)
+set.seed(42)
+```
+
+# Introduction
+
+The `maxbootR` package provides fast and user-friendly tools for block-based bootstrapping of extreme value statistics.\
+It supports disjoint, sliding, and circular block schemes, powered by C++ backends via Rcpp for speed and scalability.
+
+In this vignette, we demonstrate typical workflows for:
+
+-   Estimating extreme quantiles of log-return data from finance
+-   Estimating 100-year return levels from temperature data in climatology
+
+These case studies include the core steps:
+
+-   Extracting different types of block maxima
+-   Applying the `maxbootR()` bootstrap estimation function
+
+------------------------------------------------------------------------
+
+## Case Study 1: Log Returns from the S&P 500 Index
+
+We begin by inspecting the dataset `logret_data`, included in this package.
+
+```{r}
+head(logret_data)
+tail(logret_data)
+help("logret_data")
+```
+
+It contains daily negative log returns of the S&P 500 stock market index from 1995 to 2024.
+
+We are interested in estimating the 0.99 quantile of the **maximum yearly negative log returns**.\
+Before diving in, let's visualize the raw data to check for completeness and any anomalies.
+
+```{r}
+logret_data %>% 
+  ggplot(aes(x = day, y = neg_log_ret)) +
+  geom_line(color = "steelblue")
+
+length(logret_data$day) / 30  # approx. number of years
+sum(is.na(logret_data$neg_log_ret))  # number of missing values
+```
+
+The data appears complete and contains no missing values.
+
+------------------------------------------------------------------------
+
+## Extracting Block Maxima
+
+We set the block size to 250 (approx. number of trading days per year) and compute both disjoint and sliding block maxima.
+
+```{r}
+bsize <- 250
+bm_db <- blockmax(logret_data$neg_log_ret, block_size = bsize, type = "db")
+bm_sb <- blockmax(logret_data$neg_log_ret, block_size = bsize, type = "sb")
+
+# Time vector per block type
+day_db <- logret_data$day[seq(1, length(bm_db) * bsize, by = bsize)]
+day_sb <- logret_data$day[1:length(bm_sb)]
+
+# Combine into tidy tibble
+df_db <- tibble(day = day_db, value = bm_db, method = "Disjoint Blocks")
+df_sb <- tibble(day = day_sb, value = bm_sb, method = "Sliding Blocks")
+df_all <- bind_rows(df_db, df_sb)
+
+# Plot
+ggplot(df_all, aes(x = day, y = value)) +
+  geom_line(color = "steelblue") +
+  facet_wrap(~ method, nrow = 1) +
+  labs(title = "Block Maxima of Negative Log-Returns",
+       x = "Date", y = "Block Maximum")
+```
+
+------------------------------------------------------------------------
+
+## Bootstrap Estimation of the 0.99 Quantile
+
+We now bootstrap the 0.99 quantile of the yearly maxima using both disjoint and sliding block methods.\
+To understand expected quantile behavior, we also bootstrap the **shape parameter** of the fitted Generalized Extreme Value (GEV) distribution.
+
+```{r}
+bst.bm_db_gev <- maxbootr(
+  xx = logret_data$neg_log_ret, est = "gev", block_size = 250, 
+  B = 1000, type = "db"
+) 
+summary(bst.bm_db_gev[, 3])
+
+bst.bm_sb_gev <- maxbootr(
+  xx = logret_data$neg_log_ret, est = "gev", block_size = 250, 
+  B = 1000, type = "sb"
+)
+summary(bst.bm_sb_gev[, 3])
+```
+
+These estimates reveal **heavy tails**:\
+In both cases, the median shape parameter is \> 0.3, indicating that large extremes are expected – this motivates trimming in the next step.
+
+------------------------------------------------------------------------
+
+## Bootstrapping the 0.99 Quantile
+
+```{r}
+bst.bm_db_q <- maxbootr(
+  xx = logret_data$neg_log_ret, est = "quantile", block_size = 250, 
+  B = 1000, type = "db", p = 0.99
+) 
+summary(bst.bm_db_q)
+
+bst.bm_sb_q <- maxbootr(
+  xx = logret_data$neg_log_ret, est = "quantile", block_size = 250, 
+  B = 1000, type = "sb", p = 0.99
+)
+summary(bst.bm_sb_q)
+```
+
+The distribution is **right-skewed** and contains some high values due to large shape parameters.\
+We truncate the bootstrap replicates at the 98% quantile to visualize and compare the main mass of the distribution.
+
+```{r}
+# Trim upper 2% of bootstrap replicates
+bst.bm_db_q_trimmed <- bst.bm_db_q[bst.bm_db_q < quantile(bst.bm_db_q, 0.98)]
+bst.bm_sb_q_trimmed <- bst.bm_sb_q[bst.bm_sb_q < quantile(bst.bm_sb_q, 0.98)]
+
+# Combine for plotting
+df_q <- tibble(
+  value = c(bst.bm_db_q_trimmed, bst.bm_sb_q_trimmed),
+  method = c(rep("Disjoint Blocks", length(bst.bm_db_q_trimmed)),
+             rep("Sliding Blocks", length(bst.bm_sb_q_trimmed)))
+)
+
+# Histogram plot
+ggplot(df_q, aes(x = value)) +
+  geom_histogram(fill = "steelblue", color = "white", bins = 30) +
+  facet_wrap(~ method, nrow = 1) +
+  labs(
+    title = "Bootstrap Estimates of Extreme Quantile",
+    x = "Estimated Quantile",
+    y = "Count"
+  )
+```
+
+------------------------------------------------------------------------
+
+## Comparing Variance of Bootstrap Replicates
+
+```{r}
+# Variance ratio
+var(bst.bm_sb_q_trimmed) / var(bst.bm_db_q_trimmed)
+```
+
+The variance ratio is around **0.43**, indicating that the sliding block approach results in considerably lower estimation uncertainty.
+
+------------------------------------------------------------------------
+
+## Visualizing the Bootstrap Quantile on the Time Series
+
+We now visualize the original time series and overlay the median of the bootstrapped 0.99 quantile (from sliding blocks).
+
+```{r}
+q99 <- quantile(bst.bm_sb_q_trimmed, 0.5)
+
+ggplot(logret_data, aes(x = day, y = neg_log_ret)) +
+  geom_line(color = "steelblue") +
+  geom_hline(yintercept = q99, color = "red", linetype = "dashed") +
+  labs(
+    title = "Daily Negative Log-Returns with Extreme Quantile",
+    x = "Date",
+    y = "Negative Log-Return"
+  )
+```
+
+The large distance between observed returns and the 99% quantile reflects the rather small observation window of 30 years, if one estimates the 99% quantile.
+
+------------------------------------------------------------------------
+## Case Study 2: Maximal Temperature at Hohenpeißenberg
+
+For the second case study, we follow a similar routine with analogous steps.
+
+```{r}
+head(temp_data)
+tail(temp_data)
+help("temp_data")
+```
+
+The dataset contains daily temperature measurements from the Hohenpeißenberg weather station in Germany, covering the years 1878 to 2023 (145 years).
+
+We are interested in estimating the 100-year return level of daily temperatures.  
+The data is highly non-stationary, which can be seen in the following time series plots:
+
+```{r}
+temp_data %>% 
+  filter(lubridate::year(day) %in% c(1900, 1901, 1902)) %>% 
+  ggplot(aes(x = day, y = temp)) +
+  geom_line(color = "steelblue")
+```
+
+To mitigate non-stationarity, we extract only the summer months.  
+While this has little impact on the disjoint block bootstrap, it significantly improves the performance of the sliding block method.
+
+```{r}
+temp_data_cl <- temp_data %>% 
+  filter(lubridate::month(day) %in% c(6, 7, 8))
+```
+
+## Extracting Block Maxima
+
+Since we restrict to summer months, we use a block size of 92 days (approximate length of summer).
+
+```{r}
+bsize <- 92
+bm_db_temp <- blockmax(temp_data_cl$temp, block_size = bsize, type = "db")
+bm_sb_temp <- blockmax(temp_data_cl$temp, block_size = bsize, type = "sb")
+
+# Create time vectors for plotting
+day_db_temp <- temp_data_cl$day[seq(1, length(bm_db_temp) * bsize, by = bsize)]
+day_sb_temp <- temp_data_cl$day[1:length(bm_sb_temp)]
+
+# Create tidy tibble for plotting
+df_db_temp <- tibble(day = day_db_temp, value = bm_db_temp, method = "Disjoint Blocks")
+df_sb_temp <- tibble(day = day_sb_temp, value = bm_sb_temp, method = "Sliding Blocks")
+df_all_temp <- bind_rows(df_db_temp, df_sb_temp)
+
+# Plot block maxima
+ggplot(df_all_temp, aes(x = day, y = value)) +
+  geom_line(color = "steelblue") +
+  facet_wrap(~ method, nrow = 1) +
+  labs(title = "Block Maxima of Summer Temperatures",
+       x = "Date", y = "Block Maximum")
+```
+
+## Bootstrapping Return Levels
+
+We proceed directly with estimating the 100-year return level via bootstrapping.
+
+```{r}
+bst.bm_db_temp_q <- maxbootr(
+  xx = temp_data_cl$temp, est = "rl", block_size = bsize, 
+  B = 1000, type = "db", annuity = 100
+)
+summary(bst.bm_db_temp_q)
+
+bst.bm_sb_temp_q <- maxbootr(
+  xx = temp_data_cl$temp, est = "rl", block_size = bsize, 
+  B = 1000, type = "sb", annuity = 100
+)
+summary(bst.bm_sb_temp_q)
+```
+
+We visualize the resulting bootstrap distributions using histograms.
+
+```{r}
+# Combine for plotting
+df_q_temp <- tibble(
+  value = c(bst.bm_db_temp_q, bst.bm_sb_temp_q),
+  method = c(rep("Disjoint Blocks", length(bst.bm_db_temp_q)),
+             rep("Sliding Blocks", length(bst.bm_sb_temp_q)))
+)
+
+# Histogram plot
+ggplot(df_q_temp, aes(x = value)) +
+  geom_histogram(fill = "steelblue", color = "white", bins = 30) +
+  facet_wrap(~ method, nrow = 1) +
+  labs(
+    title = "Bootstrap Estimates of 100-Year Return Level",
+    x = "Estimated Return Level",
+    y = "Count"
+  )
+```
+
+## Comparing Variance of Bootstrap Replicates
+
+```{r}
+# Compute and display variance ratio
+var(bst.bm_sb_temp_q) / var(bst.bm_db_temp_q)
+```
+
+The variance ratio is approximately **0.85**, indicating that the sliding block bootstrap reduces estimation variance compared to the disjoint approach.
+
+## Visualizing the Return Level on the Time Series
+
+We now overlay the median return level estimate onto the original (summer-only) time series.
+
+```{r}
+rl <- quantile(bst.bm_sb_temp_q, 0.5)
+
+ggplot(temp_data, aes(x = day, y = temp)) +
+  geom_line(color = "steelblue") +
+  geom_hline(yintercept = rl, color = "red", linetype = "dashed") +
+  labs(
+    title = "All Temperatures with Estimated 100-Year Return Level",
+    x = "Date",
+    y = "Daily Max Temperature"
+  )
+```

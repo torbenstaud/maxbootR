@@ -1,0 +1,35 @@
+Package: maxbootR
+Type: Package
+Title: Efficient Bootstrap Methods for Block Maxima
+Version: 0.0.1
+Authors@R: 
+        person("Torben", "Staud", email = "torben.staud@gmail.com", role = c("aut", "cre"))
+Description: Implements state-of-the-art block bootstrap methods for extreme value 
+  statistics based on block maxima. Includes disjoint blocks, sliding blocks, 
+  and a generalized k-max transformation with circular recombination. 
+  Fast C++ backends (via Rcpp) ensure scalability for large time series. 
+  The methods follow the approach described in the paper ...
+License: GPL (>= 3) + file LICENSE
+Encoding: UTF-8
+URL: https://arxiv.org/abs/2409.05529, https://github.com/torbenstaud/maxbootR, 
+Roxygen: list(markdown = TRUE)
+RoxygenNote: 7.3.1
+LinkingTo: 
+    Rcpp
+Imports: 
+    Rcpp,
+    evd
+Suggests: 
+    testthat (>= 3.0.0),
+    covr,
+    knitr,
+    rmarkdown,
+    ggplot2,
+    dplyr,
+    lubridate,
+    tidyr
+Config/testthat/edition: 3
+VignetteBuilder: knitr
+Depends: 
+    R (>= 2.10)
+LazyData: true
