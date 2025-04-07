@@ -13,8 +13,9 @@ in C++ via Rcpp, enabling efficient computation even for long time
 series.
 
 These methods are based on the first consistent bootstrap approach for
-block maxima as introduced in [Bücher & Staud
-(2024+)](https://arxiv.org/abs/2409.05529).
+block maxima as introduced in [Bücher & Staud (2024+): Bootstrapping
+Estimators based on the Block Maxima
+Method.](https://arxiv.org/abs/2409.05529).
 
 ## Installation
 
@@ -26,9 +27,9 @@ You can install the development version of `maxbootR` from
 devtools::install_github("torbenstaud/maxbootR")
 ```
 
-or from
-[CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html) in
-`R`.
+or from the official
+[CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html)
+repository in `R`.
 
 ## Quick Example
 
@@ -65,7 +66,7 @@ df <- tibble(
 ggplot(df, aes(x = day, y = block_max)) +
   geom_line(color = "steelblue") +
   labs(
-    title = "Annual Block Maxima from Simulated Data",
+    title = "Sliding Block Maxima from Simulated Data",
     x = "Year",
     y = "Block Maximum"
   ) 
@@ -93,7 +94,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.64        0.02        0.65
+#>        0.61        0.06        0.67
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -101,7 +102,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        8.13        0.08        8.21
+#>        7.88        0.02        7.89
 
 # Compare variance
 var(bst.sb) / var(bst.db)
@@ -116,7 +117,36 @@ distributions**, reducing statistical uncertainty.
 
 <img src="man/figures/README-blockmax-plot-1.png" width="100%" style="display: block; margin: auto;" />
 
-# Learn More
+## Learn More
 
 For a full tutorial with real-world case studies (finance & climate),
 check out the [vignette](CRAN) included in the package.
+
+## References
+
+The implemented disjoint and sliding block bootstrap methods are
+grounded in the following foundational works:
+
+- Gumbel, E. J. (1958). *Statistics of Extremes*. Columbia University
+  Press.
+- Ferro, C. A. T. & Segers, J. (2003). Inference for clusters of extreme
+  values. *Journal of the Royal Statistical Society: Series B
+  (Statistical Methodology)*, 65(2), 545–556.
+
+The block bootstrap methodology itself is based on:
+
+- Bücher, A. & Staud, T. (2024+). *Bootstrapping estimators based on the
+  block maxima method*.
+  [arXiv:2409.05529](https://arxiv.org/abs/2409.05529).
+
+## Roadmap & Future Development
+
+I plan to further enhance `maxbootR` by:
+
+- Adding functionality for computing **(size-corrected) confidence
+  intervals**
+- Providing **built-in plotting and diagnostic functions**
+- Extending estimator support for **multivariate block maxima**
+
+Your ideas and contributions are welcome — feel free to open an issue or
+pull request on GitHub!
