@@ -13,7 +13,7 @@ blockmax(xx, block_size, type = "sb", k = 2)
 
 \item{type}{Character. Type of block maxima to compute. One of: \code{"db"} (disjoint blocks), \code{"sb"} (sliding blocks), or \code{"cb"} (circular blocks with k offsets).}
 
-\item{k}{Integer (only used if \code{type = "cb"}). Blocking parameter which controlls the number of blocks contained in a block of blocks. Must be an integer between 1 and \code{floor(length(xx) / block_size)}.}
+\item{k}{Integer (only used if \code{type = "cb"}). Blocking parameter which controls the number of blocks contained in a block of blocks. Must be an integer between 1 and \code{floor(length(xx) / block_size)}.}
 }
 \value{
 A numeric vector (if \code{xx} is a vector) or a matrix (if \code{xx} is a matrix). Each entry contains block maxima computed according to the selected method.
@@ -22,16 +22,18 @@ A numeric vector (if \code{xx} is a vector) or a matrix (if \code{xx} is a matri
 Extracts block maxima from a univariate numeric vector or matrix using disjoint, sliding, or circular (k-dependent) block schemes.
 }
 \examples{
-# Univariate time series example
-set.seed(42)
-x <- rnorm(100)
+if (requireNamespace("maxbootR", quietly = TRUE)) {
+  set.seed(42)
+  x <- rnorm(100)
 
-# Disjoint blocks of size 10
-bm_db <- blockmax(x, block_size = 10, type = "db")
+  # Disjoint blocks of size 10
+  bm_db <- blockmax(xx = x, block_size = 10, type = "db")
 
-# Sliding blocks of size 10
-bm_sb <- blockmax(x, block_size = 10, type = "sb")
+  # Sliding blocks of size 10
+  bm_sb <- blockmax(xx = x, block_size = 10, type = "sb")
 
-# Circular blocks of size 10 with blocking parameter k = 2
-bm_cb <- blockmax(x, block_size = 10, type = "cb", k = 2)
+  # Circular blocks of size 10 with blocking parameter k = 2
+  bm_cb <- blockmax(xx = x, block_size = 10, type = "cb", k = 2)
+}
+
 }

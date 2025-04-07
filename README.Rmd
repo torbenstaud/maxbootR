@@ -38,7 +38,7 @@ or from the official [CRAN](https://cran.r-project.org/web/packages/maxbootR/ind
 
 The following example demonstrates how to extract **sliding block maxima** from synthetic data.
 
-```{r blockmax}
+```{r blockmax, fig.align = "center", fig.width = 6, fig.height = 4, fig.alt = "Time series of block maxima from simulated normal data", fig.cap = "Time series of block maxima from simulated normal data"}
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
@@ -98,7 +98,7 @@ The **sliding block method** typically results in **narrower bootstrap distribut
 
 ## Visualizing the Bootstrap Distribution
 
-```{r blockmax-plot, echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4}
+```{r blockmax-plot, echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4, fig.alt = "Histogram of return level bootstrap replicates", fig.cap= "Histogram of return level bootstrap replicates"}
 # Combine results for plotting
 df_q <- tibble(
   value = c(bst.db, bst.sb),

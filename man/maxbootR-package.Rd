@@ -11,8 +11,10 @@ Implements state-of-the-art block bootstrap methods for extreme value statistics
 \seealso{
 Useful links:
 \itemize{
+  \item \url{https://torbenstaud.github.io/maxbootR}
   \item \url{https://arxiv.org/abs/2409.05529}
   \item \url{https://github.com/torbenstaud/maxbootR,}
+  \item Report bugs at \url{https://github.com/torbenstaud/maxbootR/issues}
 }
 
 }

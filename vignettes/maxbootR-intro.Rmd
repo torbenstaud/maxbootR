@@ -55,7 +55,7 @@ It contains daily negative log returns of the S&P 500 stock market index from 19
 We are interested in estimating the 0.99 quantile of the **maximum yearly negative log returns**.\
 Before diving in, let's visualize the raw data to check for completeness and any anomalies.
 
-```{r}
+```{r, fig.alt= "Raw Data Plot"}
 logret_data %>% 
   ggplot(aes(x = day, y = neg_log_ret)) +
   geom_line(color = "steelblue")
@@ -72,7 +72,7 @@ The data appears complete and contains no missing values.
 
 We set the block size to 250 (approx. number of trading days per year) and compute both disjoint and sliding block maxima.
 
-```{r}
+```{r, fig.alt = "Block Maxima of Negative Log-Returns"}
 bsize <- 250
 bm_db <- blockmax(logret_data$neg_log_ret, block_size = bsize, type = "db")
 bm_sb <- blockmax(logret_data$neg_log_ret, block_size = bsize, type = "sb")
@@ -139,7 +139,7 @@ summary(bst.bm_sb_q)
 The distribution is **right-skewed** and contains some high values due to large shape parameters.\
 We truncate the bootstrap replicates at the 98% quantile to visualize and compare the main mass of the distribution.
 
-```{r}
+```{r, fig.alt= "Bootstrap Estimates of Extreme Quantile"}
 # Trim upper 2% of bootstrap replicates
 bst.bm_db_q_trimmed <- bst.bm_db_q[bst.bm_db_q < quantile(bst.bm_db_q, 0.98)]
 bst.bm_sb_q_trimmed <- bst.bm_sb_q[bst.bm_sb_q < quantile(bst.bm_sb_q, 0.98)]
@@ -179,7 +179,7 @@ The variance ratio is around **0.43**, indicating that the sliding block approac
 
 We now visualize the original time series and overlay the median of the bootstrapped 0.99 quantile (from sliding blocks).
 
-```{r}
+```{r, fig.alt="Daily Negative Log-Returns with Extreme Quantile"}
 q99 <- quantile(bst.bm_sb_q_trimmed, 0.5)
 
 ggplot(logret_data, aes(x = day, y = neg_log_ret)) +
@@ -210,7 +210,7 @@ The dataset contains daily temperature measurements from the Hohenpeißenberg we
 We are interested in estimating the 100-year return level of daily temperatures.  
 The data is highly non-stationary, which can be seen in the following time series plots:
 
-```{r}
+```{r, fig.alt="3 Years of Daily Temperature"}
 temp_data %>% 
   filter(lubridate::year(day) %in% c(1900, 1901, 1902)) %>% 
   ggplot(aes(x = day, y = temp)) +
@@ -229,7 +229,7 @@ temp_data_cl <- temp_data %>%
 
 Since we restrict to summer months, we use a block size of 92 days (approximate length of summer).
 
-```{r}
+```{r, fig.alt="Block Maxima of Summer Temperatures"}
 bsize <- 92
 bm_db_temp <- blockmax(temp_data_cl$temp, block_size = bsize, type = "db")
 bm_sb_temp <- blockmax(temp_data_cl$temp, block_size = bsize, type = "sb")
@@ -271,7 +271,7 @@ summary(bst.bm_sb_temp_q)
 
 We visualize the resulting bootstrap distributions using histograms.
 
-```{r}
+```{r, fig.alt="Bootstrap Estimates of 100-Year Return Level"}
 # Combine for plotting
 df_q_temp <- tibble(
   value = c(bst.bm_db_temp_q, bst.bm_sb_temp_q),
@@ -303,7 +303,7 @@ The variance ratio is approximately **0.85**, indicating that the sliding block 
 
 We now overlay the median return level estimate onto the original (summer-only) time series.
 
-```{r}
+```{r, fig.alt="All Temperatures with Estimated 100-Year Return Level"}
 rl <- quantile(bst.bm_sb_temp_q, 0.5)
 
 ggplot(temp_data, aes(x = day, y = temp)) +

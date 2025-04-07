@@ -72,7 +72,14 @@ ggplot(df, aes(x = day, y = block_max)) +
   ) 
 ```
 
-<img src="man/figures/README-blockmax-1.png" width="100%" />
+<div class="figure" style="text-align: center">
+
+<img src="man/figures/README-blockmax-1.png" alt="Time series of block maxima from simulated normal data" width="100%" />
+<p class="caption">
+Time series of block maxima from simulated normal data
+</p>
+
+</div>
 
 ## Bootstrap a 100-Year Return Level
 
@@ -94,7 +101,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.61        0.06        0.67
+#>        0.68        0.02        0.73
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -102,7 +109,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        7.88        0.02        7.89
+#>        7.93        0.03        8.02
 
 # Compare variance
 var(bst.sb) / var(bst.db)
@@ -115,7 +122,14 @@ distributions**, reducing statistical uncertainty.
 
 ## Visualizing the Bootstrap Distribution
 
-<img src="man/figures/README-blockmax-plot-1.png" width="100%" style="display: block; margin: auto;" />
+<div class="figure" style="text-align: center">
+
+<img src="man/figures/README-blockmax-plot-1.png" alt="Histogram of return level bootstrap replicates" width="100%" />
+<p class="caption">
+Histogram of return level bootstrap replicates
+</p>
+
+</div>
 
 ## Learn More
 

@@ -39,15 +39,18 @@ A numeric vector with \code{B} rows for scalar estimators. If \code{est = "gev"}
 Performs bootstrap resampling for various block maxima estimators (mean, variance, GEV parameters, quantile, return level) using either disjoint or sliding block methods.
 }
 \examples{
-set.seed(123)
-x <- rnorm(100)
+if (requireNamespace("maxbootR", quietly = TRUE)) {
+  library(maxbootR)
+  set.seed(123)
+  x <- rnorm(100)
 
-# Bootstrap mean using sliding blocks
-boot_mean <- maxbootr(x, est = "mean", block_size = 10, B = 20, type = "sb")
+  # Bootstrap mean using sliding blocks
+  boot_mean <- maxbootr(x, est = "mean", block_size = 10, B = 20, type = "sb")
 
-# Bootstrap variance using disjoint blocks
-boot_var <- maxbootr(x, est = "var", block_size = 10, B = 20, type = "db")
+  # Bootstrap variance using disjoint blocks
+  boot_var <- maxbootr(x, est = "var", block_size = 10, B = 20, type = "db")
 
-# Bootstrap 95\%-quantile of block maxima using sliding blocks
-boot_q <- maxbootr(x, est = "quantile", block_size = 10, B = 20, type = "db", p = 0.95)
+  # Bootstrap 95\%-quantile of block maxima using sliding blocks
+  boot_q <- maxbootr(x, est = "quantile", block_size = 10, B = 20, type = "db", p = 0.95)
+}
 }

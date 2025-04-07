@@ -16,7 +16,7 @@ pkgdown:
         google: "Roboto"
       heading_font:
         google: "Fira Sans"
-
+url: https://torbenstaud.github.io/maxbootR
 home:
   links:
     - text: "GitHub"
@@ -54,10 +54,6 @@ reference:
       - maxbootr
   - title: "Utility Functions"
     desc: "Helper functions for internal use."
-    contents:
-      - meanCTabVec
-      - varCTabVec
-      - lTableVec
   - title: "Data Sets"
     desc: "Example time series data for testing and demonstration."
     contents:
