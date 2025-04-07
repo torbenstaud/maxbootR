@@ -11,7 +11,7 @@ Description: Implements state-of-the-art block bootstrap methods for extreme val
   The methods follow the approach described in the paper ...
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
-URL: https://torbenstaud.github.io/maxbootR, https://arxiv.org/abs/2409.05529, https://github.com/torbenstaud/maxbootR, 
+URL: https://torbenstaud.github.io/maxbootR, https://arxiv.org/abs/2409.05529, https://github.com/torbenstaud/maxbootR, , https://torbenstaud.github.io/maxbootR/
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 LinkingTo: 
