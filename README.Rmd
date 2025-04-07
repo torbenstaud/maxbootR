@@ -1,0 +1,92 @@
+---
+output: github_document
+---
+
+<!-- README.md is generated from README.Rmd. Please edit that file -->
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>",
+  fig.path = "man/figures/README-",
+  out.width = "100%"
+)
+```
+
+# Welcome to maxbootR
+
+<!-- badges: start -->
+
+<!-- badges: end -->
+
+The `R`-package **maxbootR** provides bootstrap methods for Block Maxima estimators, highly optimized via fast C++ backends. It offers the implementation of the first consistent block maxima bootstrap methods from the paper [Bücher, A. and Staud, T. (2024+)](https://arxiv.org/abs/2409.05529).
+
+## Installation
+
+You can install the development version of maxbootR from [GitHub](https://github.com/) with:
+
+``` r
+# install.packages("devtools")
+devtools::install_github("torbenstaud/maxbootR")
+```
+
+or from [CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html) in `R`.
+
+## Example
+
+This is a basic example which shows you how to extract sliding block maxima from data.
+
+```{r blockmax}
+library(maxbootR)
+# Example: disjoint block maxima
+set.seed(91)
+blockmax(xx = rnorm(100*365), block_size = 365, type = "sb")
+```
+
+The following code bootstraps the 100-year return level of synthetic data worth 90 years and based on a normal distribution for both disjoint and sliding bootstraps. The ratio of variances of both estimation methods is calculated and we see that sliding performs better than disjoint.
+
+```{r bst}
+library(maxbootR)
+# Example: disjoint block maxima
+set.seed(91)
+xx <- rnorm(90*365)
+bst.db <- 
+  maxbootr(
+    xx = xx, est = "rl", block_size = 365, 
+    B = 500, type = "db", annuity = 100) 
+bst.sb <- 
+  maxbootr(
+    xx = xx, est = "rl", block_size = 365, 
+    B = 500, type = "sb", annuity = 100) 
+
+var(bst.sb)/var(bst.db)
+```
+Test
+```{r blockmax-plot, echo = FALSE, fig.align = "center", fig.width = 6, fig.height = 4}
+library(ggplot2)
+library(maxbootR)
+library(dplyr)
+# Combine for plotting
+df_q <- tibble(
+  value = c(bst.db, bst.sb),
+  method = c(rep("Disjoint Blocks", length(bst.db)),
+             rep("Sliding Blocks", length(bst.sb)))
+)
+
+# Histogram plot
+ggplot(df_q, aes(x = value)) +
+  geom_histogram(fill = "steelblue", color = "white", bins = 30) +
+  facet_wrap(~ method, nrow = 1) +
+  labs(
+    title = "Bootstrap Estimates of 100-Year Return Levels",
+    x = "Estimated Return Level",
+    y = "Count"
+  )
+```
+
+# Learn More
+
+Check out the full vignette from the published package: [CRAN VIGNETTE](???)
+
+You'll still need to render `README.Rmd` regularly, to keep `README.md` up-to-date. `devtools::build_readme()` is handy for this.
+
