@@ -1,69 +1,47 @@
-pkgdown:
-  title: "maxbootR"
-subtitle: "Block Maxima Bootstrap in R"
-authors:
-  - name: "Torben Staud"
-roles: [aut, cre]
-email: "torben.staud@hhu.de"
-favicon: "man/figures/favicon.ico"
+url: https://torbenstaud.github.io/maxbootR
+
 template:
   bootstrap: 5
-bootswatch: flatly
-bslib:
-  primary: "#0A84C1"
-base_font:
-  google: "Roboto"
-heading_font:
-  google: "Fira Sans"
-url: https://torbenstaud.github.io/maxbootR
+  bootswatch: flatly
+  bslib:
+    primary: "#0A84C1"
+    base_font:
+      google: "Roboto"
+    heading_font:
+      google: "Fira Sans"
+
 home:
+  title: "maxbootR"
+  sidebar: true
   links:
-  - text: "GitHub"
-href: "https://github.com/torbenstaud/maxbootR"
-- text: "Preprint"
-href: "https://arxiv.org/abs/2409.05529"
+    - text: "GitHub"
+      href: "https://github.com/torbenstaud/maxbootR"
+    - text: "Preprint"
+      href: "https://arxiv.org/abs/2409.05529"
 
 navbar:
   structure:
-  left: [home, reference, articles, news]
-right: [github]
-components:
-  home:
-  title: "Overview"
-icon: fa-home
-reference:
-  title: "Function Reference"
-icon: fa-code
-articles:
-  title: "Vignettes"
-icon: fa-book
-news:
-  title: "Changelog"
-href: "https://github.com/torbenstaud/maxbootR/releases"
-github:
-  icon: fa-github
-href: "https://github.com/torbenstaud/maxbootR"
+    left: [home, reference, articles, news]
+    right: [github]
+  components:
+    github:
+      icon: fa-github
+      href: "https://github.com/torbenstaud/maxbootR"
 
 reference:
   - title: "Core Functions"
-desc: >
-  Main functions for computing block maxima and performing bootstrap estimation.
-contents:
-  - blockmax
-- maxbootr
-- title: "Utility Functions"
-desc: "Helper functions for internal use."
-- title: "Data Sets"
-desc: "Example time series data for testing and demonstration."
-contents:
-  - logret_data
-- temp_data
+    contents:
+      - blockmax
+      - maxbootr
+  - title: "Data Sets"
+    contents:
+      - logret_data
+      - temp_data
 
 articles:
-  - title: "Introduction to maxbootR"
-contents:
-  - maxbootR-intro
+  - title: "Introduction"
+    contents:
+      - maxbootR-intro
 
-# Optional settings
 news:
   cran_dates: true

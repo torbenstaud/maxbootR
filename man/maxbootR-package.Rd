@@ -14,7 +14,6 @@ Useful links:
   \item \url{https://torbenstaud.github.io/maxbootR}
   \item \url{https://arxiv.org/abs/2409.05529}
   \item \url{https://github.com/torbenstaud/maxbootR}
-  \item \url{}
   \item \url{https://torbenstaud.github.io/maxbootR/}
   \item Report bugs at \url{https://github.com/torbenstaud/maxbootR/issues}
 }
