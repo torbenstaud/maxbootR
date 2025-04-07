@@ -4,6 +4,7 @@
 # Welcome to maxbootR
 
 [![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
+[![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://codecov.io/gh/torbenstaud/maxbootR)
 
 The `maxbootR` package provides **fast and consistent bootstrap methods
 for block maxima**, designed for applications in extreme value
@@ -92,7 +93,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.70        0.00        0.75
+#>        0.72        0.00        0.78
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -100,7 +101,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        7.95        0.00        8.34
+#>        7.96        0.00        8.15
 
 # Compare variance
 var(bst.sb) / var(bst.db)
