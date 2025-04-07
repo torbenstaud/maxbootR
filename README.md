@@ -3,8 +3,7 @@
 
 # Welcome to maxbootR
 
-<!-- badges: start -->
-<!-- badges: end -->
+[![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
 
 The `maxbootR` package provides **fast and consistent bootstrap methods
 for block maxima**, designed for applications in extreme value
@@ -40,14 +39,6 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
-#> 
-#> Attache Paket: 'dplyr'
-#> Die folgenden Objekte sind maskiert von 'package:stats':
-#> 
-#>     filter, lag
-#> Die folgenden Objekte sind maskiert von 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -101,7 +92,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.68        0.02        0.73
+#>        0.70        0.00        0.75
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -109,7 +100,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        7.93        0.03        8.02
+#>        7.95        0.00        8.34
 
 # Compare variance
 var(bst.sb) / var(bst.db)

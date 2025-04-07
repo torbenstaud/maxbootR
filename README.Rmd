@@ -15,9 +15,7 @@ knitr::opts_chunk$set(
 
 # Welcome to maxbootR
 
-<!-- badges: start -->
-
-<!-- badges: end -->
+[![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
 
 The `maxbootR` package provides **fast and consistent bootstrap methods for block maxima**, designed for applications in extreme value statistics. Under the hood, performance-critical parts are implemented in C++ via Rcpp, enabling efficient computation even for long time series.
 
