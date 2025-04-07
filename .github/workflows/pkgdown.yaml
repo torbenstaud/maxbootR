@@ -30,3 +30,8 @@ jobs:
         with:
           branch: gh-pages
           folder: docs
+
+- name: Upload test coverage to Codecov
+  run: |
+    install.packages("covr")
+    covr::codecov()
