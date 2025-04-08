@@ -37,7 +37,10 @@
 <li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
       </ul>
 <ul class="navbar-nav">
-<li class="nav-item"><a class="external-link nav-link" href="https://github.com/torbenstaud/maxbootR"><span class="fa fa-github"></span></a></li>
+<li class="nav-item"><form class="form-inline" role="search">
+ <input class="form-control" type="search" name="search-input" id="search-input" autocomplete="off" aria-label="Search site" placeholder="Search for" data-search-index="search.json">
+</form></li>
+<li class="nav-item"><a class="external-link nav-link" href="https://github.com/torbenstaud/maxbootR/" aria-label="GitHub"><span class="fa fab fa-github fa-lg"></span></a></li>
       </ul>
 </div>
 
@@ -48,7 +51,7 @@
   <main id="main" class="col-md-9"><div class="section level1">
 <div class="page-header"><h1 id="welcome-to-maxbootr">Welcome to maxbootR<a class="anchor" aria-label="anchor" href="#welcome-to-maxbootr"></a>
 </h1></div>
-<p><a href="https://torbenstaud.github.io/maxbootR/"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg"></a></p>
+<p><a href="https://torbenstaud.github.io/maxbootR/"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg"></a> <a href="https://codecov.io/gh/torbenstaud/maxbootR" class="external-link"><img src="https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg" alt="codecov"></a></p>
 <p>The <code>maxbootR</code> package provides <strong>fast and consistent bootstrap methods for block maxima</strong>, designed for applications in extreme value statistics. Under the hood, performance-critical parts are implemented in C++ via Rcpp, enabling efficient computation even for long time series.</p>
 <p>These methods are based on the first consistent bootstrap approach for block maxima as introduced in <a href="https://arxiv.org/abs/2409.05529" class="external-link">Bücher &amp; Staud (2024+): Bootstrapping Estimators based on the Block Maxima Method.</a>.</p>
 <div class="section level2">
@@ -114,7 +117,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span><span class="st">"db"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        0.70        0.00        0.75</span></span>
+<span><span class="co">#&gt;        0.72        0.00        0.78</span></span>
 <span></span>
 <span><span class="co"># Bootstrap using sliding blocks (+timing)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span></span>
@@ -122,7 +125,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span> <span class="st">"sb"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        7.95        0.00        8.34</span></span>
+<span><span class="co">#&gt;        7.96        0.00        8.15</span></span>
 <span></span>
 <span><span class="co"># Compare variance</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.sb</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.db</span><span class="op">)</span></span>

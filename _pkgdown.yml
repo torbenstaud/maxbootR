@@ -22,11 +22,6 @@ home:
 navbar:
   structure:
     left: [home, reference, articles, news]
-    right: [github]
-  components:
-    github:
-      icon: fa-github
-      href: "https://github.com/torbenstaud/maxbootR"
 
 reference:
   - title: "Core Functions"
