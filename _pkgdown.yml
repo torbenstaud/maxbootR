@@ -1,5 +1,5 @@
 url: https://torbenstaud.github.io/maxbootR
-
+favicon: man/figures/favicon.ico
 template:
   bootstrap: 5
   bootswatch: flatly
