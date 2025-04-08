@@ -5,6 +5,9 @@
 
 [![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
 [![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://codecov.io/gh/torbenstaud/maxbootR)
+[![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/torbenstaud/maxbootR/graphs/commit-activity)
+[![Last
+Commit](https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg)](https://github.com/torbenstaud/maxbootR/commits/master)
 
 The `maxbootR` package provides **fast and consistent bootstrap methods
 for block maxima**, designed for applications in extreme value
@@ -40,6 +43,14 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
+#> 
+#> Attache Paket: 'dplyr'
+#> Die folgenden Objekte sind maskiert von 'package:stats':
+#> 
+#>     filter, lag
+#> Die folgenden Objekte sind maskiert von 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -93,7 +104,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.72        0.00        0.78
+#>        0.59        0.02        0.66
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -101,7 +112,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        7.96        0.00        8.15
+#>        6.78        0.09        6.92
 
 # Compare variance
 var(bst.sb) / var(bst.db)
