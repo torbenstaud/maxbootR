@@ -1,7 +1,7 @@
 Package: maxbootR
 Type: Package
 Title: Efficient Bootstrap Methods for Block Maxima
-Version: 0.0.1
+Version: 1.0.0
 Authors@R: 
         person("Torben", "Staud", email = "torben.staud@gmail.com", role = c("aut", "cre"))
 Description: Implements state-of-the-art block bootstrap methods for extreme value 

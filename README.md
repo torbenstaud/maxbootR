@@ -3,11 +3,19 @@
 
 # Welcome to maxbootR
 
-[![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
-[![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://codecov.io/gh/torbenstaud/maxbootR)
+[![CRAN
+status](https://www.r-pkg.org/badges/version/maxbootR)](https://CRAN.R-project.org/package=maxbootR)
 [![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/torbenstaud/maxbootR/graphs/commit-activity)
 [![Last
 Commit](https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg)](https://github.com/torbenstaud/maxbootR/commits/master)
+[![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://codecov.io/gh/torbenstaud/maxbootR)
+[![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
+[![R-CMD-check](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml)
+[![Lifecycle:
+stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
+[![License:
+GPL-3](https://img.shields.io/badge/license-GPL--3-blue.svg)](https://www.gnu.org/licenses/gpl-3.0)
+[![arXiv](https://img.shields.io/badge/arXiv-2409.05529-b31b1b.svg)](https://arxiv.org/abs/2409.05529)
 
 The `maxbootR` package provides **fast and consistent bootstrap methods
 for block maxima**, designed for applications in extreme value
@@ -32,7 +40,11 @@ devtools::install_github("torbenstaud/maxbootR")
 
 or from the official
 [CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html)
-repository in `R`.
+repository in `R` with:
+
+``` r
+install.packages("maxbootR")
+```
 
 ## Quick Example
 
@@ -96,7 +108,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.63        0.01        0.69
+#>        0.58        0.00        0.64
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -104,7 +116,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.86        0.03        6.90
+#>        6.78        0.02        6.84
 
 # Compare variance
 var(bst.sb) / var(bst.db)
