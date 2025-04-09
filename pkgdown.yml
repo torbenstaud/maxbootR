@@ -3,7 +3,7 @@ pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   maxbootR-intro: maxbootR-intro.html
-last_built: 2025-04-08T20:07Z
+last_built: 2025-04-09T20:19Z
 urls:
   reference: https://torbenstaud.github.io/maxbootR/reference
   article: https://torbenstaud.github.io/maxbootR/articles
