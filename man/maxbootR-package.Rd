@@ -8,7 +8,7 @@
 \description{
 \if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
 
-Implements state-of-the-art block bootstrap methods for extreme value statistics based on block maxima. Includes disjoint blocks, sliding blocks, relying on a circular transformation of blocks. Fast C++ backends (via Rcpp) ensure scalability for large time series. The methods follow the approach described in the paper ...
+Implements state-of-the-art block bootstrap methods for extreme value statistics based on block maxima. Includes disjoint blocks, sliding blocks, relying on a circular transformation of blocks. Fast C++ backends (via Rcpp) ensure scalability for large time series.
 }
 \seealso{
 Useful links:
@@ -20,7 +20,7 @@ Useful links:
 
 }
 \author{
-\strong{Maintainer}: Torben Staud \email{torben.staud@gmail.com}
+\strong{Maintainer}: Torben Staud \email{torben.staud@gmail.com} [copyright holder]
 
 }
 \keyword{internal}

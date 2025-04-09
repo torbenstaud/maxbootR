@@ -38,8 +38,7 @@ You can install the development version of `maxbootR` from
 devtools::install_github("torbenstaud/maxbootR")
 ```
 
-or from the official
-[CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html)
+or from the official [CRAN](https://cran.r-project.org/package=maxbootR)
 repository in `R` with:
 
 ``` r
@@ -108,7 +107,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.58        0.00        0.64
+#>        0.64        0.00        0.71
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -116,7 +115,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.78        0.02        6.84
+#>        6.94        0.00        6.94
 
 # Compare variance
 var(bst.sb) / var(bst.db)

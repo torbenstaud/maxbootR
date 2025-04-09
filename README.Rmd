@@ -30,7 +30,7 @@ You can install the development version of `maxbootR` from [GitHub](https://gith
 devtools::install_github("torbenstaud/maxbootR")
 ```
 
-or from the official [CRAN](https://cran.r-project.org/web/packages/maxbootR/index.html) repository in `R` with:
+or from the official [CRAN](https://cran.r-project.org/package=maxbootR) repository in `R` with:
 
 ``` r
 install.packages("maxbootR")
