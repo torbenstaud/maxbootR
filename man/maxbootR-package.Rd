@@ -6,6 +6,8 @@
 \alias{maxbootR-package}
 \title{maxbootR: Efficient Bootstrap Methods for Block Maxima}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 Implements state-of-the-art block bootstrap methods for extreme value statistics based on block maxima. Includes disjoint blocks, sliding blocks, and a generalized k-max transformation with circular recombination. Fast C++ backends (via Rcpp) ensure scalability for large time series. The methods follow the approach described in the paper ...
 }
 \seealso{

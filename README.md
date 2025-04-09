@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file -->
+<!-- README.md is generated from README.Rmd. Please edit that file1 -->
 
 # Welcome to maxbootR
 
@@ -43,14 +43,6 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
-#> 
-#> Attache Paket: 'dplyr'
-#> Die folgenden Objekte sind maskiert von 'package:stats':
-#> 
-#>     filter, lag
-#> Die folgenden Objekte sind maskiert von 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -104,7 +96,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.59        0.02        0.66
+#>        0.63        0.01        0.69
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -112,7 +104,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.78        0.09        6.92
+#>        6.86        0.03        6.90
 
 # Compare variance
 var(bst.sb) / var(bst.db)

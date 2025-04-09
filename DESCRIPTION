@@ -6,12 +6,12 @@ Authors@R:
         person("Torben", "Staud", email = "torben.staud@gmail.com", role = c("aut", "cre"))
 Description: Implements state-of-the-art block bootstrap methods for extreme value 
   statistics based on block maxima. Includes disjoint blocks, sliding blocks, 
-  and a generalized k-max transformation with circular recombination. 
+  relying on a circular transformation of blocks. 
   Fast C++ backends (via Rcpp) ensure scalability for large time series. 
   The methods follow the approach described in the paper ...
 License: GPL (>= 3) + file LICENSE
 Encoding: UTF-8
-URL: https://torbenstaud.github.io/maxbootR, https://arxiv.org/abs/2409.05529, https://github.com/torbenstaud/maxbootR, https://torbenstaud.github.io/maxbootR/
+URL: https://torbenstaud.github.io/maxbootR/, https://github.com/torbenstaud/maxbootR 
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
 LinkingTo: 
