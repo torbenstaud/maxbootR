@@ -8,7 +8,7 @@ status](https://www.r-pkg.org/badges/version/maxbootR)](https://CRAN.R-project.o
 [![Maintained](https://img.shields.io/badge/maintained-yes-brightgreen.svg)](https://github.com/torbenstaud/maxbootR/graphs/commit-activity)
 [![Last
 Commit](https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg)](https://github.com/torbenstaud/maxbootR/commits/master)
-[![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://codecov.io/gh/torbenstaud/maxbootR)
+[![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/torbenstaud/maxbootR)
 [![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
 [![R-CMD-check](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
@@ -54,6 +54,14 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
+#> 
+#> Attache Paket: 'dplyr'
+#> Die folgenden Objekte sind maskiert von 'package:stats':
+#> 
+#>     filter, lag
+#> Die folgenden Objekte sind maskiert von 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -107,7 +115,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.64        0.00        0.71
+#>        0.64        0.06        0.73
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -115,7 +123,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.94        0.00        6.94
+#>        6.79        0.11        6.96
 
 # Compare variance
 var(bst.sb) / var(bst.db)

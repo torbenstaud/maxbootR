@@ -33,4 +33,3 @@ Depends:
     R (>= 2.10)
 LazyData: true
 BugReports: https://github.com/torbenstaud/maxbootR/issues
-News: NEWS.md
