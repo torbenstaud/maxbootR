@@ -61,7 +61,7 @@
 <img src="logo.png" class="logo" alt=""><h1 id="welcome-to-maxbootr">Welcome to maxbootR<a class="anchor" aria-label="anchor" href="#welcome-to-maxbootr"></a>
 </h1>
 </div>
-<p><a href="https://CRAN.R-project.org/package=maxbootR" class="external-link"><img src="https://www.r-pkg.org/badges/version/maxbootR" alt="CRAN status"></a> <a href="https://github.com/torbenstaud/maxbootR/graphs/commit-activity" class="external-link"><img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintained"></a> <a href="https://github.com/torbenstaud/maxbootR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg" alt="Last Commit"></a> <a href="https://codecov.io/gh/torbenstaud/maxbootR" class="external-link"><img src="https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://torbenstaud.github.io/maxbootR/"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg"></a> <a href="https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a> <a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="License: GPL-3"></a> <a href="https://arxiv.org/abs/2409.05529" class="external-link"><img src="https://img.shields.io/badge/arXiv-2409.05529-b31b1b.svg" alt="arXiv"></a></p>
+<p><a href="https://CRAN.R-project.org/package=maxbootR" class="external-link"><img src="https://www.r-pkg.org/badges/version/maxbootR" alt="CRAN status"></a> <a href="https://github.com/torbenstaud/maxbootR/graphs/commit-activity" class="external-link"><img src="https://img.shields.io/badge/maintained-yes-brightgreen.svg" alt="Maintained"></a> <a href="https://github.com/torbenstaud/maxbootR/commits/master" class="external-link"><img src="https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg" alt="Last Commit"></a> <a href="https://app.codecov.io/gh/torbenstaud/maxbootR" class="external-link"><img src="https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg" alt="codecov"></a> <a href="https://torbenstaud.github.io/maxbootR/"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg"></a> <a href="https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml" class="external-link"><img src="https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg" alt="R-CMD-check"></a> <a href="https://lifecycle.r-lib.org/articles/stages.html" class="external-link"><img src="https://img.shields.io/badge/lifecycle-stable-brightgreen.svg" alt="Lifecycle: stable"></a> <a href="https://www.gnu.org/licenses/gpl-3.0" class="external-link"><img src="https://img.shields.io/badge/license-GPL--3-blue.svg" alt="License: GPL-3"></a> <a href="https://arxiv.org/abs/2409.05529" class="external-link"><img src="https://img.shields.io/badge/arXiv-2409.05529-b31b1b.svg" alt="arXiv"></a></p>
 <p>The <code>maxbootR</code> package provides <strong>fast and consistent bootstrap methods for block maxima</strong>, designed for applications in extreme value statistics. Under the hood, performance-critical parts are implemented in C++ via Rcpp, enabling efficient computation even for long time series.</p>
 <p>These methods are based on the first consistent bootstrap approach for block maxima as introduced in <a href="https://arxiv.org/abs/2409.05529" class="external-link">Bücher &amp; Staud (2024+): Bootstrapping Estimators based on the Block Maxima Method.</a>.</p>
 <div class="section level2">
@@ -83,6 +83,14 @@
 <code class="sourceCode R"><span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://ggplot2.tidyverse.org" class="external-link">ggplot2</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://torbenstaud.github.io/maxbootR">maxbootR</a></span><span class="op">)</span></span>
 <span><span class="kw"><a href="https://rdrr.io/r/base/library.html" class="external-link">library</a></span><span class="op">(</span><span class="va"><a href="https://dplyr.tidyverse.org" class="external-link">dplyr</a></span><span class="op">)</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt; Attache Paket: 'dplyr'</span></span>
+<span><span class="co">#&gt; Die folgenden Objekte sind maskiert von 'package:stats':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     filter, lag</span></span>
+<span><span class="co">#&gt; Die folgenden Objekte sind maskiert von 'package:base':</span></span>
+<span><span class="co">#&gt; </span></span>
+<span><span class="co">#&gt;     intersect, setdiff, setequal, union</span></span>
 <span></span>
 <span><span class="co"># Generate 100 years of daily observations</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/Random.html" class="external-link">set.seed</a></span><span class="op">(</span><span class="fl">91</span><span class="op">)</span></span>
@@ -129,7 +137,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span><span class="st">"db"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        0.64        0.00        0.71</span></span>
+<span><span class="co">#&gt;        0.64        0.06        0.73</span></span>
 <span></span>
 <span><span class="co"># Bootstrap using sliding blocks (+timing)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span></span>
@@ -137,7 +145,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span> <span class="st">"sb"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        6.94        0.00        6.94</span></span>
+<span><span class="co">#&gt;        6.79        0.11        6.96</span></span>
 <span></span>
 <span><span class="co"># Compare variance</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.sb</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.db</span><span class="op">)</span></span>
