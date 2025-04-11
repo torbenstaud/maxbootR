@@ -129,7 +129,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span><span class="st">"db"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        0.60        0.00        0.66</span></span>
+<span><span class="co">#&gt;        0.60        0.01        0.65</span></span>
 <span></span>
 <span><span class="co"># Bootstrap using sliding blocks (+timing)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span></span>
@@ -137,7 +137,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span> <span class="st">"sb"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        6.87        0.00        6.89</span></span>
+<span><span class="co">#&gt;        6.79        0.00        6.84</span></span>
 <span></span>
 <span><span class="co"># Compare variance</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.sb</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.db</span><span class="op">)</span></span>
@@ -157,7 +157,7 @@ Histogram of return level bootstrap replicates
 <div class="section level2">
 <h2 id="learn-more">Learn More<a class="anchor" aria-label="anchor" href="#learn-more"></a>
 </h2>
-<p>For a full tutorial with real-world case studies (finance &amp; climate), check out the <a href="vignettes/maxbootR-intro.Rmd">vignette</a> included in the package.</p>
+<p>For a full tutorial with real-world case studies (finance &amp; climate), check out the <a href="docs/articles/maxbootR-intro.html">vignette</a> included in the package.</p>
 </div>
 <div class="section level2">
 <h2 id="references">References<a class="anchor" aria-label="anchor" href="#references"></a>
