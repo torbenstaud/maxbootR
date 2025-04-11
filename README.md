@@ -54,14 +54,6 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
-#> 
-#> Attache Paket: 'dplyr'
-#> Die folgenden Objekte sind maskiert von 'package:stats':
-#> 
-#>     filter, lag
-#> Die folgenden Objekte sind maskiert von 'package:base':
-#> 
-#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -115,7 +107,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.64        0.06        0.73
+#>        0.60        0.00        0.66
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -123,7 +115,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.79        0.11        6.96
+#>        6.87        0.00        6.89
 
 # Compare variance
 var(bst.sb) / var(bst.db)
@@ -148,7 +140,8 @@ Histogram of return level bootstrap replicates
 ## Learn More
 
 For a full tutorial with real-world case studies (finance & climate),
-check out the [vignette](CRAN) included in the package.
+check out the [vignette](vignettes/maxbootR-intro.Rmd) included in the
+package.
 
 ## References
 
