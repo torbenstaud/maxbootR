@@ -121,7 +121,7 @@ ggplot(df_q, aes(x = value)) +
 
 ## Learn More
 
-For a full tutorial with real-world case studies (finance & climate), check out the [vignette](docs/articles/maxbootR-intro.html) included in the package.
+For a full tutorial with real-world case studies (finance & climate), check out the [vignette](https://torbenstaud.github.io/maxbootR/articles/maxbootR-intro.html) included in the package.
 
 ## References
 
