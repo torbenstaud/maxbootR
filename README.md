@@ -107,7 +107,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.60        0.00        0.66
+#>        0.60        0.01        0.65
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -115,7 +115,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.87        0.00        6.89
+#>        6.79        0.00        6.84
 
 # Compare variance
 var(bst.sb) / var(bst.db)
@@ -140,8 +140,8 @@ Histogram of return level bootstrap replicates
 ## Learn More
 
 For a full tutorial with real-world case studies (finance & climate),
-check out the [vignette](vignettes/maxbootR-intro.Rmd) included in the
-package.
+check out the [vignette](docs/articles/maxbootR-intro.html) included in
+the package.
 
 ## References
 
