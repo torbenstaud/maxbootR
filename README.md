@@ -38,8 +38,7 @@ You can install the development version of `maxbootR` from
 devtools::install_github("torbenstaud/maxbootR")
 ```
 
-or from the official [CRAN](https://cran.r-project.org/package=maxbootR)
-repository in `R` with:
+or from the official CRAN repository in `R` with:
 
 ``` r
 install.packages("maxbootR")
@@ -54,6 +53,14 @@ maxima** from synthetic data.
 library(ggplot2)
 library(maxbootR)
 library(dplyr)
+#> 
+#> Attache Paket: 'dplyr'
+#> Die folgenden Objekte sind maskiert von 'package:stats':
+#> 
+#>     filter, lag
+#> Die folgenden Objekte sind maskiert von 'package:base':
+#> 
+#>     intersect, setdiff, setequal, union
 
 # Generate 100 years of daily observations
 set.seed(91)
@@ -107,7 +114,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.60        0.02        0.65
+#>        0.65        0.02        0.70
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -115,7 +122,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.80        0.00        6.81
+#>        6.89        0.04        6.97
 
 # Compare variance
 var(bst.sb) / var(bst.db)

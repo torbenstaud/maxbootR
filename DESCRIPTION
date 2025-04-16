@@ -7,8 +7,8 @@ Authors@R:
 Description: Implements state-of-the-art block bootstrap methods for extreme value 
   statistics based on block maxima. Includes disjoint blocks, sliding blocks, 
   relying on a circular transformation of blocks. 
-  Fast C++ backends (via Rcpp) ensure scalability for large time series.
-License: GPL (>= 3) + file LICENSE
+  Fast C++ backends (via 'Rcpp') ensure scalability for large time series.
+License: GPL (>= 3)
 Encoding: UTF-8
 URL: https://torbenstaud.github.io/maxbootR/, https://github.com/torbenstaud/maxbootR 
 Roxygen: list(markdown = TRUE)
