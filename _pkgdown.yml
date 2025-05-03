@@ -1,42 +1,4 @@
-url: https://torbenstaud.github.io/maxbootR
-favicon: man/figures/favicon.ico
+url: https://torbenstaud.github.io/maxbootR/
 template:
   bootstrap: 5
-  bootswatch: flatly
-  bslib:
-    primary: "#0A84C1"
-    base_font:
-      google: "Roboto"
-    heading_font:
-      google: "Fira Sans"
 
-home:
-  title: "maxbootR"
-  sidebar: true
-  links:
-    - text: "GitHub"
-      href: "https://github.com/torbenstaud/maxbootR"
-    - text: "Preprint"
-      href: "https://arxiv.org/abs/2409.05529"
-
-navbar:
-  structure:
-    left: [home, reference, articles, news]
-
-reference:
-  - title: "Core Functions"
-    contents:
-      - blockmax
-      - maxbootr
-  - title: "Data Sets"
-    contents:
-      - logret_data
-      - temp_data
-
-articles:
-  - title: "Introduction"
-    contents:
-      - maxbootR-intro
-
-news:
-  cran_dates: true

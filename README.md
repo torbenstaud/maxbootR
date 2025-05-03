@@ -1,5 +1,5 @@
 
-<!-- README.md is generated from README.Rmd. Please edit that file1 -->
+<!-- README.md is generated from README.Rmd. Please edit that file! -->
 
 # Welcome to maxbootR
 
@@ -116,7 +116,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.57        0.04        0.63
+#>        0.59        0.03        0.63
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -124,7 +124,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.82        0.06        6.95
+#>        6.91        0.08        7.08
 
 # Compare variance
 var(bst.sb) / var(bst.db)

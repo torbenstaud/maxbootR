@@ -5,7 +5,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<title>maxbootR • maxbootR</title>
+<title>Efficient Bootstrap Methods for Block Maxima • maxbootR</title>
 <!-- favicons --><link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
 <link rel="apple-touch-icon" type="image/png" sizes="180x180" href="apple-touch-icon.png">
@@ -14,11 +14,9 @@
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="apple-touch-icon-60x60.png">
 <script src="deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <link href="deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
-<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/Roboto-0.4.9/font.css" rel="stylesheet">
-<link href="deps/Fira_Sans-0.4.9/font.css" rel="stylesheet">
-<link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
+<script src="deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><link href="deps/font-awesome-6.4.2/css/all.min.css" rel="stylesheet">
 <link href="deps/font-awesome-6.4.2/css/v4-shims.min.css" rel="stylesheet">
-<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="maxbootR">
+<script src="deps/headroom-0.11.0/headroom.min.js"></script><script src="deps/headroom-0.11.0/jQuery.headroom.min.js"></script><script src="deps/bootstrap-toc-1.0.1/bootstrap-toc.min.js"></script><script src="deps/clipboard.js-2.0.11/clipboard.min.js"></script><script src="deps/search-1.0.0/autocomplete.jquery.min.js"></script><script src="deps/search-1.0.0/fuse.min.js"></script><script src="deps/search-1.0.0/mark.min.js"></script><!-- pkgdown --><script src="pkgdown.js"></script><meta property="og:title" content="Efficient Bootstrap Methods for Block Maxima">
 <meta name="description" content="Implements state-of-the-art block bootstrap methods for extreme value statistics based on block maxima. Includes disjoint blocks, sliding blocks, relying on a circular transformation of blocks. Fast C++ backends (via Rcpp) ensure scalability for large time series.">
 <meta property="og:description" content="Implements state-of-the-art block bootstrap methods for extreme value statistics based on block maxima. Includes disjoint blocks, sliding blocks, relying on a circular transformation of blocks. Fast C++ backends (via Rcpp) ensure scalability for large time series.">
 <meta property="og:image" content="https://torbenstaud.github.io/maxbootR/logo.png">
@@ -27,7 +25,7 @@
     <a href="#main" class="visually-hidden-focusable">Skip to contents</a>
 
 
-    <nav class="navbar navbar-expand-lg fixed-top bg-primary" data-bs-theme="dark" aria-label="Site navigation"><div class="container">
+    <nav class="navbar navbar-expand-lg fixed-top bg-light" data-bs-theme="light" aria-label="Site navigation"><div class="container">
 
     <a class="navbar-brand me-2" href="index.html">maxbootR</a>
 
@@ -41,7 +39,12 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
-<li class="nav-item"><a class="nav-link" href="articles/index.html">Articles</a></li>
+<li class="nav-item dropdown">
+  <button class="nav-link dropdown-toggle" type="button" id="dropdown-articles" data-bs-toggle="dropdown" aria-expanded="false" aria-haspopup="true">Articles</button>
+  <ul class="dropdown-menu" aria-labelledby="dropdown-articles">
+<li><a class="dropdown-item" href="articles/maxbootR-intro.html">maxbootR-intro</a></li>
+  </ul>
+</li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
 <ul class="navbar-nav">
@@ -137,7 +140,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span><span class="st">"db"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        0.57        0.04        0.63</span></span>
+<span><span class="co">#&gt;        0.60        0.04        0.64</span></span>
 <span></span>
 <span><span class="co"># Bootstrap using sliding blocks (+timing)</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/base/system.time.html" class="external-link">system.time</a></span><span class="op">(</span></span>
@@ -145,7 +148,7 @@ Time series of block maxima from simulated normal data
 <span>                     type <span class="op">=</span> <span class="st">"sb"</span>, annuity <span class="op">=</span> <span class="fl">100</span><span class="op">)</span></span>
 <span><span class="op">)</span></span>
 <span><span class="co">#&gt;        User      System verstrichen </span></span>
-<span><span class="co">#&gt;        6.82        0.06        6.95</span></span>
+<span><span class="co">#&gt;        7.05        0.07        7.31</span></span>
 <span></span>
 <span><span class="co"># Compare variance</span></span>
 <span><span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.sb</span><span class="op">)</span> <span class="op">/</span> <span class="fu"><a href="https://rdrr.io/r/stats/cor.html" class="external-link">var</a></span><span class="op">(</span><span class="va">bst.db</span><span class="op">)</span></span>
@@ -201,8 +204,6 @@ Histogram of return level bootstrap replicates
 <li><a href="https://cloud.r-project.org/package=maxbootR" class="external-link">View on CRAN</a></li>
 <li><a href="https://github.com/torbenstaud/maxbootR/" class="external-link">Browse source code</a></li>
 <li><a href="https://github.com/torbenstaud/maxbootR/issues" class="external-link">Report a bug</a></li>
-<li><a href="https://github.com/torbenstaud/maxbootR" class="external-link">GitHub</a></li>
-<li><a href="https://arxiv.org/abs/2409.05529" class="external-link">Preprint</a></li>
 </ul>
 </div>
 
