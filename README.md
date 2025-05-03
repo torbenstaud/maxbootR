@@ -9,8 +9,10 @@ status](https://www.r-pkg.org/badges/version/maxbootR)](https://CRAN.R-project.o
 [![Last
 Commit](https://img.shields.io/github/last-commit/torbenstaud/maxbootR.svg)](https://github.com/torbenstaud/maxbootR/commits/master)
 [![codecov](https://codecov.io/gh/torbenstaud/maxbootR/branch/master/graph/badge.svg)](https://app.codecov.io/gh/torbenstaud/maxbootR)
-[![](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
-[![R-CMD-check](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml)
+[![pkgdown
+status](https://github.com/torbenstaud/maxbootR/actions/workflows/pkgdown.yaml/badge.svg)](https://torbenstaud.github.io/maxbootR/)
+[![R CMD
+check](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/torbenstaud/maxbootR/actions/workflows/R-CMD-check.yaml)
 [![Lifecycle:
 stable](https://img.shields.io/badge/lifecycle-stable-brightgreen.svg)](https://lifecycle.r-lib.org/articles/stages.html)
 [![License:
@@ -114,7 +116,7 @@ system.time(
                      type ="db", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        0.65        0.02        0.70
+#>        0.57        0.04        0.63
 
 # Bootstrap using sliding blocks (+timing)
 system.time(
@@ -122,7 +124,7 @@ system.time(
                      type = "sb", annuity = 100)
 )
 #>        User      System verstrichen 
-#>        6.89        0.04        6.97
+#>        6.82        0.06        6.95
 
 # Compare variance
 var(bst.sb) / var(bst.db)
